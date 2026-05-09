@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.controllers.TransferController"
+      prefWidth="1100" prefHeight="700"
+      style="-fx-background-color: #0D1117;">
+
+    <!--SIDEBAR (same as dashboard) -->
+    <VBox prefWidth="220"
+          style="-fx-background-color: #0D1117;
+                 -fx-border-color: transparent #21262D transparent transparent;
+                 -fx-border-width: 0 1 0 0;">
+
+        <!-- Brand -->
+        <VBox alignment="CENTER" spacing="4"
+              style="-fx-padding: 28 20 24 20;
+                     -fx-border-color: transparent transparent #21262D transparent;
+                     -fx-border-width: 0 0 1 0;">
+            <Label text="₣"
+                   style="-fx-font-size: 32px; -fx-text-fill: #00D4AA;
+                          -fx-effect: dropshadow(gaussian,rgba(0,212,170,0.4),10,0,0,0);"/>
+            <Label text="FinVerse"
+                   style="-fx-font-size: 16px; -fx-font-weight: bold;
+                          -fx-text-fill: #E6EDF3;"/>
+            <Label text="Wallet"
+                   style="-fx-font-size: 11px; -fx-text-fill: #8B949E;"/>
+        </VBox>
+
+        <Region prefHeight="16"/>
+
+        <VBox spacing="4" style="-fx-padding: 0 12;">
+            <Button text="  📊   Dashboard" prefWidth="196" prefHeight="42"
+                    onAction="#goToDashboard"
+                    style="-fx-background-color: transparent;
+                           -fx-text-fill: #8B949E; -fx-font-size: 13px;
+                           -fx-cursor: hand; -fx-background-radius: 8;
+                           -fx-alignment: center-left; -fx-padding: 0 0 0 12;"/>
+
+            <Button text="  💸   Transfer" prefWidth="196" prefHeight="42"
+                    style="-fx-background-color: rgba(0,212,170,0.12);
+                           -fx-text-fill: #00D4AA; -fx-font-weight: bold;
+                           -fx-font-size: 13px; -fx-cursor: hand;
+                           -fx-background-radius: 8;
+                           -fx-alignment: center-left; -fx-padding: 0 0 0 12;
+                           -fx-border-color: transparent transparent transparent #00D4AA;
+                           -fx-border-width: 0 0 0 3;"/>
+        </VBox>
+
+        <Region VBox.vgrow="ALWAYS"/>
+    </VBox>
+
+    <!--MAIN CONTENT -->
+    <VBox HBox.hgrow="ALWAYS" alignment="TOP_CENTER"
+          style="-fx-background-color: #0D1117; -fx-padding: 40 60;">
+
+        <!-- Header -->
+        <Label text="Send Money"
+               style="-fx-font-size: 26px; -fx-font-weight: bold;
+                      -fx-text-fill: #E6EDF3;"/>
+        <Label text="Transfer funds instantly to any FinVerse user"
+               style="-fx-font-size: 13px; -fx-text-fill: #8B949E;
+                      -fx-padding: 4 0 32 0;"/>
+
+        <!-- Transfer Form Card -->
+        <VBox maxWidth="500"
+              style="-fx-background-color: #161B22;
+                     -fx-background-radius: 16;
+                     -fx-border-color: #30363D;
+                     -fx-border-width: 1;
+                     -fx-border-radius: 16;
+                     -fx-padding: 36;
+                     -fx-effect: dropshadow(gaussian,rgba(0,0,0,0.4),20,0,0,6);">
+
+            <!-- Available Balance Badge -->
+            <HBox alignment="CENTER_LEFT" spacing="10"
+                  style="-fx-background-color: rgba(0,212,170,0.08);
+                         -fx-background-radius: 8;
+                         -fx-border-color: rgba(0,212,170,0.2);
+                         -fx-border-width: 1;
+                         -fx-border-radius: 8;
+                         -fx-padding: 12 16;">
+                <Label text="💰"  style="-fx-font-size: 18px;"/>
+                <Label fx:id="balanceLabel" text="Available: PKR 0.00"
+                       style="-fx-text-fill: #00D4AA; -fx-font-size: 14px;
+                              -fx-font-weight: bold;"/>
+            </HBox>
+
+            <Region prefHeight="28"/>
+
+            <!-- Recipient -->
+            <Label text="RECIPIENT USERNAME"
+                   style="-fx-text-fill: #8B949E; -fx-font-size: 11px;
+                          -fx-font-weight: bold; -fx-padding: 0 0 8 0;"/>
+            <TextField fx:id="receiverField"
+                       promptText="Enter recipient's username"
+                       styleClass="text-field"
+                       prefWidth="428" prefHeight="46"/>
+
+            <Region prefHeight="20"/>
+
+            <!-- Amount -->
+            <Label text="AMOUNT (PKR)"
+                   style="-fx-text-fill: #8B949E; -fx-font-size: 11px;
+                          -fx-font-weight: bold; -fx-padding: 0 0 8 0;"/>
+            <TextField fx:id="amountField"
+                       promptText="0.00  (minimum PKR 10)"
+                       styleClass="text-field"
+                       prefWidth="428" prefHeight="46"/>
+
+            <Region prefHeight="20"/>
+
+            <!-- Note (optional) -->
+            <Label text="NOTE  (optional)"
+                   style="-fx-text-fill: #8B949E; -fx-font-size: 11px;
+                          -fx-font-weight: bold; -fx-padding: 0 0 8 0;"/>
+            <TextArea fx:id="noteArea"
+                      promptText="Add a note to this transfer..."
+                      styleClass="text-area"
+                      prefWidth="428" prefHeight="80"
+                      wrapText="true"/>
+
+            <Region prefHeight="10"/>
+
+            <!-- Message -->
+            <Label fx:id="messageLabel" text=""
+                   wrapText="true" maxWidth="428"
+                   style="-fx-font-size: 12px; -fx-padding: 6 0 6 0;"/>
+
+            <!-- Info note -->
+            <Label text="ℹ  Minimum balance of PKR 100 must be maintained after transfer."
+                   wrapText="true" maxWidth="428"
+                   style="-fx-text-fill: #8B949E; -fx-font-size: 11px;
+                          -fx-padding: 0 0 20 0;"/>
+
+            <!-- Buttons -->
+            <HBox spacing="12">
+                <Button fx:id="transferButton"
+                        text="Send Money →"
+                        onAction="#handleTransfer"
+                        prefHeight="46" HBox.hgrow="ALWAYS"
+                        maxWidth="Infinity"
+                        styleClass="btn-primary"/>
+                <Button text="← Back"
+                        onAction="#goToDashboard"
+                        prefHeight="46" prefWidth="100"
+                        styleClass="btn-ghost"/>
+            </HBox>
+
+        </VBox>
+
+        <Region prefHeight="24"/>
+
+        <!-- Transfer Tips -->
+        <VBox maxWidth="500" spacing="8"
+              style="-fx-background-color: #161B22;
+                     -fx-background-radius: 12;
+                     -fx-border-color: #30363D;
+                     -fx-border-width: 1;
+                     -fx-border-radius: 12;
+                     -fx-padding: 20;">
+            <Label text="TRANSFER TIPS"
+                   style="-fx-text-fill: #8B949E; -fx-font-size: 11px;
+                          -fx-font-weight: bold;"/>
+            <Label text="✦  The recipient must have a FinVerse account"
+                   style="-fx-text-fill: #8B949E; -fx-font-size: 12px;"/>
+            <Label text="✦  Transfers are instant and cannot be reversed"
+                   style="-fx-text-fill: #8B949E; -fx-font-size: 12px;"/>
+            <Label text="✦  Both sender and receiver get a transaction record"
+                   style="-fx-text-fill: #8B949E; -fx-font-size: 12px;"/>
+            <Label text="✦  If a transfer fails, no money is deducted (atomic)"
+                   style="-fx-text-fill: #00D4AA; -fx-font-size: 12px;"/>
+        </VBox>
+
+    </VBox>
+</HBox>

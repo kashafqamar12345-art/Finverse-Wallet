@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.MainController">
+
+    <!-- TOP -->
+    <top>
+        <HBox spacing="10" style="-fx-background-color: #1f2a38;">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="Finverse Wallet"
+                   style="-fx-text-fill: white; -fx-font-size: 18px;"/>
+        </HBox>
+    </top>
+
+    <!-- CENTER -->
+    <center>
+        <VBox spacing="12" alignment="CENTER">
+
+            <Label text="Login"
+                   style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+
+            <TextField fx:id="usernameField"
+                       promptText="Username"
+                       maxWidth="250"/>
+
+            <PasswordField fx:id="passwordField"
+                           promptText="Password"
+                           maxWidth="250"/>
+
+            <Button fx:id="loginButton"
+                    text="Login"
+                    maxWidth="250"
+                    style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
+
+            <Label fx:id="messageLabel"
+                   text=""
+                   style="-fx-text-fill: red;"/>
+
+        </VBox>
+    </center>
+
+    <!-- BOTTOM -->
+    <bottom>
+        <Label text="© 2026 Finverse Wallet"
+               BorderPane.alignment="CENTER"
+               style="-fx-padding: 10;"/>
+    </bottom>
+
+</BorderPane>

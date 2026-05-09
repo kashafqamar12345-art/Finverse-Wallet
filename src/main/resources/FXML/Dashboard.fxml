@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.controllers.DashBoardController"
+      prefWidth="1100" prefHeight="600"
+      style="-fx-background-color: #0D1117;">
+
+    <!-- SIDEBAR-->
+    <VBox prefWidth="220"
+          style="-fx-background-color: #0D1117;
+                 -fx-border-color: transparent #21262D transparent transparent;
+                 -fx-border-width: 0 1 0 0;
+                 -fx-padding: 0;">
+
+        <!-- Brand -->
+        <VBox alignment="CENTER" spacing="4"
+              style="-fx-padding: 28 20 24 20;
+                     -fx-border-color: transparent transparent #21262D transparent;
+                     -fx-border-width: 0 0 1 0;">
+            <Label text="₣"
+                   style="-fx-font-size: 32px; -fx-text-fill: #00D4AA;
+                          -fx-effect: dropshadow(gaussian,rgba(0,212,170,0.4),10,0,0,0);"/>
+            <Label text="FinVerse"
+                   style="-fx-font-size: 16px; -fx-font-weight: bold;
+                          -fx-text-fill: #E6EDF3;"/>
+            <Label text="Wallet"
+                   style="-fx-font-size: 11px; -fx-text-fill: #8B949E;"/>
+        </VBox>
+
+        <Region prefHeight="16"/>
+
+        <!-- Nav items -->
+        <VBox spacing="4" style="-fx-padding: 0 12;">
+
+            <Button text="  📊   Dashboard" prefWidth="196" prefHeight="42"
+                    style="-fx-background-color: rgba(0,212,170,0.12);
+                           -fx-text-fill: #00D4AA; -fx-font-weight: bold;
+                           -fx-font-size: 13px; -fx-cursor: hand;
+                           -fx-background-radius: 8;
+                           -fx-alignment: center-left; -fx-padding: 0 0 0 12;
+                           -fx-border-color: transparent transparent transparent #00D4AA;
+                           -fx-border-width: 0 0 0 3;"/>
+
+            <Button text="  💸   Transfer" prefWidth="196" prefHeight="42"
+                    onAction="#goToTransfer"
+                    style="-fx-background-color: transparent;
+                           -fx-text-fill: #8B949E; -fx-font-size: 13px;
+                           -fx-cursor: hand; -fx-background-radius: 8;
+                           -fx-alignment: center-left; -fx-padding: 0 0 0 12;"/>
+
+        </VBox>
+
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <!-- User info + Logout at bottom -->
+        <VBox style="-fx-padding: 16 12;
+                     -fx-border-color: #21262D transparent transparent transparent;
+                     -fx-border-width: 1 0 0 0;">
+            <Label fx:id="welcomeLabel" text="Welcome!"
+                   wrapText="true" maxWidth="196"
+                   style="-fx-text-fill: #8B949E; -fx-font-size: 12px;
+                          -fx-padding: 0 0 12 4;"/>
+            <Button text="  🚪   Logout" prefWidth="196" prefHeight="38"
+                    onAction="#handleLogout"
+                    style="-fx-background-color: rgba(255,107,107,0.1);
+                           -fx-text-fill: #FF6B6B; -fx-font-size: 13px;
+                           -fx-cursor: hand; -fx-background-radius: 8;
+                           -fx-alignment: center-left; -fx-padding: 0 0 0 12;"/>
+        </VBox>
+    </VBox>
+
+    <!-- MAIN CONTENT AREA -->
+    <VBox HBox.hgrow="ALWAYS"
+          style="-fx-background-color: #0D1117; -fx-padding: 28 32;">
+
+        <!-- Page Title -->
+        <Label text="Dashboard"
+               style="-fx-font-size: 22px; -fx-font-weight: bold;
+                      -fx-text-fill: #E6EDF3;"/>
+        <Label text="Overview of your wallet activity"
+               style="-fx-font-size: 13px; -fx-text-fill: #8B949E;
+                      -fx-padding: 2 0 20 0;"/>
+
+        <!-- ── TOP ROW: Balance Card + Stats + Quick Action -->
+        <HBox spacing="16" alignment="TOP_LEFT">
+
+            <!-- Balance Card -->
+            <VBox prefWidth="280" prefHeight="160" spacing="8"
+                  style="-fx-background-color: linear-gradient(to bottom right, #0D2E26, #161B22);
+                         -fx-background-radius: 16;
+                         -fx-border-color: #00D4AA;
+                         -fx-border-width: 1.5;
+                         -fx-border-radius: 16;
+                         -fx-padding: 24;
+                         -fx-effect: dropshadow(gaussian,rgba(0,212,170,0.2),20,0,0,4);">
+                <Label text="TOTAL BALANCE"
+                       style="-fx-text-fill: #8B949E; -fx-font-size: 11px;
+                              -fx-font-weight: bold;"/>
+                <HBox alignment="BOTTOM_LEFT" spacing="8">
+                    <Label fx:id="currencyLabel" text="PKR"
+                           style="-fx-font-size: 18px; -fx-text-fill: #00D4AA;
+                                  -fx-font-weight: bold; -fx-padding: 0 0 6 0;"/>
+                    <Label fx:id="balanceLabel" text="0.00"
+                           style="-fx-font-size: 36px; -fx-font-weight: bold;
+                                  -fx-text-fill: #E6EDF3;"/>
+                </HBox>
+                <Region VBox.vgrow="ALWAYS"/>
+                <Label text="🟢  Account Active"
+                       style="-fx-text-fill: #00D4AA; -fx-font-size: 12px;"/>
+            </VBox>
+
+            <!-- Stats Column -->
+            <VBox spacing="12" prefWidth="200">
+
+                <!-- Total Received -->
+                <VBox prefHeight="68" spacing="4"
+                      style="-fx-background-color: #161B22;
+                             -fx-background-radius: 12;
+                             -fx-border-color: #30363D;
+                             -fx-border-width: 1;
+                             -fx-border-radius: 12;
+                             -fx-padding: 14 16;">
+                    <Label text="TOTAL RECEIVED"
+                           style="-fx-text-fill: #8B949E; -fx-font-size: 10px;
+                                  -fx-font-weight: bold;"/>
+                    <Label fx:id="totalReceivedLabel" text="PKR 0.00"
+                           style="-fx-text-fill: #00D4AA; -fx-font-size: 16px;
+                                  -fx-font-weight: bold;"/>
+                </VBox>
+
+                <!-- Total Spent -->
+                <VBox prefHeight="68" spacing="4"
+                      style="-fx-background-color: #161B22;
+                             -fx-background-radius: 12;
+                             -fx-border-color: #30363D;
+                             -fx-border-width: 1;
+                             -fx-border-radius: 12;
+                             -fx-padding: 14 16;">
+                    <Label text="TOTAL SPENT"
+                           style="-fx-text-fill: #8B949E; -fx-font-size: 10px;
+                                  -fx-font-weight: bold;"/>
+                    <Label fx:id="totalSpentLabel" text="PKR 0.00"
+                           style="-fx-text-fill: #FF6B6B; -fx-font-size: 16px;
+                                  -fx-font-weight: bold;"/>
+                </VBox>
+            </VBox>
+
+            <!-- Tx Count -->
+            <VBox prefWidth="130" prefHeight="148" spacing="4" alignment="CENTER"
+                  style="-fx-background-color: #161B22;
+                         -fx-background-radius: 12;
+                         -fx-border-color: #30363D;
+                         -fx-border-width: 1;
+                         -fx-border-radius: 12;
+                         -fx-padding: 20;">
+                <Label text="TRANSACTIONS"
+                       style="-fx-text-fill: #8B949E; -fx-font-size: 10px;
+                              -fx-font-weight: bold;"/>
+                <Label fx:id="txCountLabel" text="0"
+                       style="-fx-font-size: 40px; -fx-font-weight: bold;
+                              -fx-text-fill: #FFE66D;"/>
+                <Label text="completed"
+                       style="-fx-text-fill: #8B949E; -fx-font-size: 11px;"/>
+            </VBox>
+
+            <!-- Quick Actions Card -->
+            <VBox HBox.hgrow="ALWAYS" spacing="12"
+                  style="-fx-background-color: #161B22;
+                         -fx-background-radius: 12;
+                         -fx-border-color: #30363D;
+                         -fx-border-width: 1;
+                         -fx-border-radius: 12;
+                         -fx-padding: 20;">
+                <Label text="QUICK ACTIONS"
+                       style="-fx-text-fill: #8B949E; -fx-font-size: 11px;
+                              -fx-font-weight: bold;"/>
+
+                <TextField fx:id="amountField"
+                           promptText="Enter amount (PKR)"
+                           styleClass="text-field"
+                           prefHeight="40"/>
+
+                <HBox spacing="10">
+                    <Button text="＋ Deposit"
+                            onAction="#handleDeposit"
+                            prefHeight="36" HBox.hgrow="ALWAYS"
+                            style="-fx-background-color: rgba(0,212,170,0.15);
+                                   -fx-text-fill: #00D4AA; -fx-font-weight: bold;
+                                   -fx-font-size: 12px; -fx-cursor: hand;
+                                   -fx-background-radius: 8;
+                                   -fx-border-color: #00D4AA; -fx-border-width: 1;
+                                   -fx-border-radius: 8;"/>
+                    <Button text="－ Withdraw"
+                            onAction="#handleWithdraw"
+                            prefHeight="36" HBox.hgrow="ALWAYS"
+                            style="-fx-background-color: rgba(255,107,107,0.15);
+                                   -fx-text-fill: #FF6B6B; -fx-font-weight: bold;
+                                   -fx-font-size: 12px; -fx-cursor: hand;
+                                   -fx-background-radius: 8;
+                                   -fx-border-color: #FF6B6B; -fx-border-width: 1;
+                                   -fx-border-radius: 8;"/>
+                    <Button text="↗ Transfer"
+                            onAction="#goToTransfer"
+                            prefHeight="36" HBox.hgrow="ALWAYS"
+                            style="-fx-background-color: rgba(255,230,109,0.15);
+                                   -fx-text-fill: #FFE66D; -fx-font-weight: bold;
+                                   -fx-font-size: 12px; -fx-cursor: hand;
+                                   -fx-background-radius: 8;
+                                   -fx-border-color: #FFE66D; -fx-border-width: 1;
+                                   -fx-border-radius: 8;"/>
+                </HBox>
+
+                <Label fx:id="actionMessageLabel" text=""
+                       wrapText="true"
+                       style="-fx-font-size: 12px; -fx-padding: 2 0 0 0;"/>
+            </VBox>
+
+        </HBox>
+
+        <Region prefHeight="24"/>
+
+        <!-- ── TRANSACTION HISTORY TABLE -->
+        <Label text="Transaction History"
+               style="-fx-font-size: 16px; -fx-font-weight: bold;
+                      -fx-text-fill: #E6EDF3; -fx-padding: 0 0 12 0;"/>
+
+        <TableView fx:id="transactionTable" VBox.vgrow="ALWAYS"
+                   styleClass="table-view"
+                   style="-fx-background-color: #161B22;
+                          -fx-background-radius: 12;
+                          -fx-border-color: #30363D;
+                          -fx-border-width: 1;
+                          -fx-border-radius: 12;">
+
+            <columns>
+                <TableColumn fx:id="colId"    text="#"       prefWidth="50"/>
+                <TableColumn fx:id="colType"  text="TYPE"    prefWidth="100"/>
+                <TableColumn fx:id="colAmount" text="AMOUNT" prefWidth="160"/>
+                <TableColumn fx:id="colParty" text="PARTY"   prefWidth="180"/>
+                <TableColumn fx:id="colDate"  text="DATE &amp; TIME" prefWidth="180"/>
+                <TableColumn fx:id="colStatus" text="STATUS" prefWidth="100"/>
+            </columns>
+        </TableView>
+
+    </VBox>
+</HBox>
