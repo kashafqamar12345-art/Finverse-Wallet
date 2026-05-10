@@ -151,7 +151,7 @@ Login Screen
                               └─ Transfer ──▶ Transfer Screen ──▶ Dashboard
 ```
 **FINAL PROJECT RECORDING YOUTUBE LINK :** https://youtu.be/Od_ap1UFFhA
-**URL GITHUB REPOSITORY** : https://github.com/KashafBatool018/Finverse-Wallet
+**URL GITHUB REPOSITORY** : https://github.com/kashafqamar12345-art/Finverse-Wallet
 
 ## Notes
 
